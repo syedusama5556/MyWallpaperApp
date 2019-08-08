@@ -3,18 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@color/gray"
     tools:context=".AddNewImageUrl">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_marginRight="12dp"
+        android:layout_height="300dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="45dp"
-        android:layout_height="300dp"
-        >
+        android:layout_marginRight="12dp">
 
 
         <LinearLayout
@@ -30,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
 
-                 >
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
 
