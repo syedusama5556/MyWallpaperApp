@@ -9,7 +9,7 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.show_image_with_large_details_activity);
 
 
 

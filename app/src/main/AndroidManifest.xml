@@ -21,8 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AboutPage" />
-        <activity android:name=".HomeScreen" />
+        <activity android:name=".AboutPage" >
+
+        </activity>
+        <activity android:name=".HomeScreen" >
+
+        </activity>
         <activity android:name=".ShowLargeImageWithDetailsAndOptions">
 
         </activity>
