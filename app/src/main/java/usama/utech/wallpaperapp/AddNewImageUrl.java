@@ -48,7 +48,7 @@ public class AddNewImageUrl extends AppCompatActivity implements View.OnClickLis
 
 
                     break;
-                }
+              }
             }
         }
     }
