@@ -1,15 +1,13 @@
 package usama.utech.wallpaperapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.common.internal.service.Common;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,21 +33,43 @@ public class AddNewImageUrl extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()) {
             case R.id.btn_name: {
 
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(Comman.wallpaper_refrence).push();
+                if (validateUrl(editTextUrl.getText().toString())) {
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(Comman.wallpaper_refrence).push();
 
-                ImageModelClass imageModelClass = new ImageModelClass(databaseReference.getKey(),editTextUrl.getText().toString(),"false");
-                databaseReference.setValue(imageModelClass).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
+                    ImageModelClass imageModelClass = new ImageModelClass(databaseReference.getKey(), editTextUrl.getText().toString(), "false");
+                    databaseReference.setValue(imageModelClass).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
 
-                        Toast.makeText(AddNewImageUrl.this, "Image is uploaded and is awaiting verification. It will be shown in main list once verified", Toast.LENGTH_LONG).show();
+                            Toast.makeText(AddNewImageUrl.this, "Image is uploaded and is awaiting verification. It will be shown in main list once verified", Toast.LENGTH_LONG).show();
 
-                    }
-                });
+                        }
+                    });
 
 
-                break;
+                    break;
+                }
             }
         }
+    }
+
+
+    public boolean validateUrl(String url) {
+
+
+
+        if (url.startsWith("https://") || url.startsWith("http://"))
+        {
+
+            if (url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".gif") || url.endsWith(".jpeg") || url.endsWith(".JPG") || url.endsWith(".PNG") || url.endsWith(".GIF") || url.endsWith(".JPEG"))
+            {
+
+                return true;
+
+            }
+
+        }
+
+        return false;
     }
 }

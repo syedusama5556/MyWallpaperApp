@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="guidlines">1) Copy image url from any source (make sure that it is a direct link)\n2) Pase it in the box and press submit</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawar</string>
+    <string name="navigation_drawer_close">Close navigation drawar</string>
+
+
 </resources>
