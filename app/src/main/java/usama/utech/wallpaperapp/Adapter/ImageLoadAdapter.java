@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -60,6 +61,8 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.MyIt
                     Intent intent = new Intent(context, ShowLargeImageWithDetailsAndOptions.class);
 
                     intent.putExtra("pos",position);
+
+                    Toast.makeText(context, "text"+position, Toast.LENGTH_SHORT).show();
 
                     context.startActivity(intent);
 

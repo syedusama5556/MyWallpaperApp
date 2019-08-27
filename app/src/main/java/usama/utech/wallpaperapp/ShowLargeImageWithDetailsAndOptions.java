@@ -26,7 +26,7 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
     ArrayList<ImageModelClass> imageModelClasses = new ArrayList<>();
     DatabaseReference databaseReference;
 
-    String positionFormHomeScreen = "";
+    int positionFormHomeScreen = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +34,11 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
         setContentView(R.layout.show_image_with_large_details_activity);
 
 
-        if (getIntent() != null){
+        if (getIntent() != null) {
 
-            positionFormHomeScreen= getIntent().getStringExtra("pos");
+            positionFormHomeScreen = getIntent().getIntExtra("pos", 0);
 
-            Toast.makeText(this, ""+positionFormHomeScreen, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "" + positionFormHomeScreen, Toast.LENGTH_SHORT).show();
         }
 
         databaseReference = FirebaseDatabase.getInstance().getReference(Comman.wallpaper_refrence);
@@ -75,10 +75,15 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
         adapter = new ViewPagerImageAdapter(this, imageModelClasses);
         viewPager.setAdapter(adapter);
 
-        if (positionFormHomeScreen != null && !positionFormHomeScreen.equals("")) {
-            viewPager.setCurrentItem(Integer.parseInt(positionFormHomeScreen));
-        }else {
-            viewPager.setCurrentItem(adapter.getCount() -1);
-        }
+
+        viewPager.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                viewPager.setCurrentItem(positionFormHomeScreen);
+            }
+        }, 10);
+
+
     }
 }
