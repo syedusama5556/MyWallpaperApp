@@ -2,6 +2,7 @@ package usama.utech.wallpaperapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.paginate.Paginate;
 
 import java.util.ArrayList;
 
@@ -42,8 +44,14 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     private FloatingActionButton fab_homepage;
     DatabaseReference databaseReference;
 
+    private boolean loading = true;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
 
     private DrawerLayout drawer;
+    private int[] lastPositions;
+    private int lastVisibleItem;
+    private Paginate.Callbacks onLoadMoreListener;
+    private int visibleThreshold;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +97,73 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
         imageLoadAdapter = new ImageLoadAdapter(HomeScreen.this, imageModelClassArrayList);
         recyclerView.setAdapter(imageLoadAdapter);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+
+       final StaggeredGridLayoutManager staggeredGridLayoutManager =  new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+//
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//            }
+//
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//                if(dy > 0) //check for scroll down
+//                {
+//                    visibleItemCount = staggeredGridLayoutManager.getChildCount();
+//                    totalItemCount = staggeredGridLayoutManager.getItemCount();
+//                    pastVisiblesItems = staggeredGridLayoutManager.findFirstVisibleItemPositions()
+//
+//                    if (loading)
+//                    {
+//                        if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount)
+//                        {
+//                            loading = false;
+//                            Log.v("...", "Last Item Wow !");
+//                            //Do pagination.. i.e. fetch new data
+//                        }
+//                    }
+//                }
+//
+//
+//            }
+//        });
+//
+
+
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if (dy > 0) {
+
+                    totalItemCount = staggeredGridLayoutManager.getItemCount();
+                    if (lastPositions == null)
+                        lastPositions = new int[staggeredGridLayoutManager.getSpanCount()];
+                    lastPositions = staggeredGridLayoutManager.findLastCompletelyVisibleItemPositions(lastPositions);
+                    lastVisibleItem = Math.max(lastPositions[0], lastPositions[1]);//findMax(lastPositions);
+
+                    if (!loading && totalItemCount >= 20 && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+                        // End has been reached
+                        
+                        
+                        if (onLoadMoreListener != null) {
+                            onLoadMoreListener.onLoadMore();
+                        }
+                        loading = true;
+                    }
+                }
+            }
+        });
+
+
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

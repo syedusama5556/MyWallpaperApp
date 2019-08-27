@@ -1,6 +1,7 @@
 package usama.utech.wallpaperapp.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 import usama.utech.wallpaperapp.Model.ImageModelClass;
 import usama.utech.wallpaperapp.R;
+import usama.utech.wallpaperapp.ShowLargeImageWithDetailsAndOptions;
 
 public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.MyItemViewHolder> {
 
@@ -38,7 +40,7 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.MyIt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyItemViewHolder holder, final int position) {
 
         ImageModelClass imageModel = imageModelClasses.get(position);
 
@@ -46,16 +48,26 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.MyIt
 
             RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.ic_launcher_background);
 
-//            Picasso.get()
-//                    .load(imageModel.getImage_url())
-//                    .placeholder(R.drawable.ic_launcher_background)
-//                    .into(holder.myImage);
-
-
             Glide.with(context)
                     .load(imageModel.getImage_url())
                     .apply(requestOptions)
                     .into(holder.myImage);
+
+            holder.myCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(context, ShowLargeImageWithDetailsAndOptions.class);
+
+                    intent.putExtra("pos",position);
+
+                    context.startActivity(intent);
+
+
+
+                }
+            });
+
         }
 
 
