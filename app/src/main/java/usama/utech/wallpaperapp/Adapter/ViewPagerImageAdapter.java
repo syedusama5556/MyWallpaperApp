@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.viewpager.widget.PagerAdapter;
 
@@ -39,7 +40,7 @@ public class ViewPagerImageAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         View itemView = mLayoutInflater.inflate(R.layout.viewpager_item, container, false);
 
         ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
@@ -59,6 +60,16 @@ public class ViewPagerImageAdapter extends PagerAdapter {
 
 
         }
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Toast.makeText(context, "helloddsddj"+position, Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         container.addView(itemView);
 

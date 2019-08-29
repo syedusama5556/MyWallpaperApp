@@ -1,18 +1,30 @@
 package usama.utech.wallpaperapp;
 
+import android.app.WallpaperManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import usama.utech.wallpaperapp.Adapter.ViewPagerImageAdapter;
@@ -26,12 +38,27 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
     ArrayList<ImageModelClass> imageModelClasses = new ArrayList<>();
     DatabaseReference databaseReference;
 
-    int positionFormHomeScreen = 0;
+    int positionFormHomeScreen = 0, pageScrollChangenumber = 0;
+
+    FloatingActionButton setAsWallpaper;
+    ExtendedFloatingActionButton nextFab, backFab;
+    private DisplayMetrics displayMetrics;
+    private int width=0;
+    private int height=0;
+    private WallpaperManager wallpaperManager;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_image_with_large_details_activity);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference(Comman.wallpaper_refrence);
+
+
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
+
 
 
         if (getIntent() != null) {
@@ -40,11 +67,6 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
 
             Toast.makeText(this, "" + positionFormHomeScreen, Toast.LENGTH_SHORT).show();
         }
-
-        databaseReference = FirebaseDatabase.getInstance().getReference(Comman.wallpaper_refrence);
-
-
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
 
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -80,10 +102,128 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
 
             @Override
             public void run() {
+
                 viewPager.setCurrentItem(positionFormHomeScreen);
+
+                pageScrollChangenumber = positionFormHomeScreen;
             }
         }, 10);
 
 
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                pageScrollChangenumber = position;
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
     }
+
+    public void next(View view) {
+
+        viewPager.setCurrentItem(pageScrollChangenumber + 1);
+    }
+
+    public void back(View view) {
+
+        viewPager.setCurrentItem(pageScrollChangenumber - 1);
+    }
+
+    public void setWallPaper(View view) {
+
+        Picasso.get().load(imageModelClasses.get(pageScrollChangenumber).getImage_url()).into(new Target(){
+
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+
+
+                GetScreenWidthHeight();
+
+                Bitmap bitmap1 = Bitmap.createScaledBitmap(bitmap, width, height, false);
+
+
+                wallpaperManager = WallpaperManager.getInstance(ShowLargeImageWithDetailsAndOptions.this);
+
+                try {
+
+                    wallpaperManager.setBitmap(bitmap1);
+
+                    wallpaperManager.suggestDesiredDimensions(width, height);
+                    Toast.makeText(ShowLargeImageWithDetailsAndOptions.this, "Wallpaper Changed", Toast.LENGTH_SHORT).show();
+
+
+                } catch (IOException e) {
+                    Toast.makeText(ShowLargeImageWithDetailsAndOptions.this, "wallpaper error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                Log.d("TAG", "FAILED");
+                Toast.makeText(ShowLargeImageWithDetailsAndOptions.this, "Loading image failed", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onPrepareLoad(final Drawable placeHolderDrawable) {
+                Log.d("TAG", "Prepare Load");
+                Toast.makeText(ShowLargeImageWithDetailsAndOptions.this, "Downloading image", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
+
+
+
+    public void GetScreenWidthHeight(){
+
+        displayMetrics = new DisplayMetrics();
+
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        width = displayMetrics.widthPixels;
+
+        height = displayMetrics.heightPixels;
+
+    }
+
+
+
+    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            // Calculate ratios of height and width to requested height and width
+            final int heightRatio = Math.round((float) height / (float) reqHeight);
+            final int widthRatio = Math.round((float) width / (float) reqWidth);
+
+            // Choose the smallest ratio as inSampleSize value, this will guarantee
+            // a final image with both dimensions larger than or equal to the
+            // requested height and width.
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+
+        return inSampleSize;
+    }
+
 }
