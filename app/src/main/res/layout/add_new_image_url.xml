@@ -26,34 +26,32 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
                 android:text="Add Url Of Image You Want To Add"
-                android:layout_marginBottom="10dp"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="@string/guidlines"/>
+                android:text="@string/guidlines" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/name_text_input"
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:background="@drawable/edittext_style"
+                android:hint="Enter Image Url"
+                android:paddingStart="12dp" />
 
-                >
 
-                <com.google.android.material.textfield.TextInputEditText
-
-                    android:id="@+id/edit_text_url"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_style"
-                    android:hint="Enter Image Url"
-                    android:paddingStart="12dp" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <Spinner
+                android:id="@+id/category_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary" />
 
 
             <Button

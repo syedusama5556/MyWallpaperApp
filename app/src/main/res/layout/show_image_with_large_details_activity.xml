@@ -6,51 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".ShowLargeImageWithDetailsAndOptions">
 
- <androidx.viewpager.widget.ViewPager
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:id="@+id/view_pager"
-     android:background="@color/colorPrimary">
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
- </androidx.viewpager.widget.ViewPager>
+        android:background="@color/colorPrimary">
+
+    </androidx.viewpager.widget.ViewPager>
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:id="@+id/setAsWallpaper"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="50dp"
-        android:onClick="setWallPaper"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
-
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/nextFab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="20dp"
-        android:text="Next"
-        android:onClick="next"
-        app:iconGravity="textEnd"
-        app:icon="@drawable/ic_arrow_forward_black_24dp" />
+        android:orientation="horizontal"
+        >
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/backFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            android:layout_margin="15dp"
+            android:onClick="back"
+            app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/setAsWallpaper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            android:layout_margin="15dp"
+            android:onClick="setWallPaper"
+            app:srcCompat="@drawable/ic_wallpaper_black_24dp" />
 
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/backFab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
-        android:text="Back"
-        android:onClick="back"
-        app:icon="@drawable/ic_arrow_back_black_24dp" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/nextFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            android:layout_margin="15dp"
+            android:onClick="next"
+            app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

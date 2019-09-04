@@ -1,13 +1,15 @@
 package usama.utech.wallpaperapp;
 
+import android.app.ProgressDialog;
 import android.app.WallpaperManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,22 +45,27 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
     FloatingActionButton setAsWallpaper;
     ExtendedFloatingActionButton nextFab, backFab;
     private DisplayMetrics displayMetrics;
-    private int width=0;
-    private int height=0;
-    private WallpaperManager wallpaperManager;
+    private int width = 0;
+    private int height = 0;
 
+    private WallpaperManager wallpaperManager;
+    private ProgressDialog progressDialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.show_image_with_large_details_activity);
 
         databaseReference = FirebaseDatabase.getInstance().getReference(Comman.wallpaper_refrence);
 
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-
 
 
         if (getIntent() != null) {
@@ -98,6 +105,7 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
         viewPager.setAdapter(adapter);
 
 
+
         viewPager.postDelayed(new Runnable() {
 
             @Override
@@ -108,7 +116,6 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
                 pageScrollChangenumber = positionFormHomeScreen;
             }
         }, 10);
-
 
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -144,7 +151,11 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
 
     public void setWallPaper(View view) {
 
-        Picasso.get().load(imageModelClasses.get(pageScrollChangenumber).getImage_url()).into(new Target(){
+        progressDialog = new ProgressDialog(ShowLargeImageWithDetailsAndOptions.this);
+        progressDialog.setCancelable(false);
+
+
+        Picasso.get().load(imageModelClasses.get(pageScrollChangenumber).getImage_url()).into(new Target() {
 
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -162,11 +173,13 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
                     wallpaperManager.setBitmap(bitmap1);
 
                     wallpaperManager.suggestDesiredDimensions(width, height);
+
+                    progressDialog.dismiss();
                     Toast.makeText(ShowLargeImageWithDetailsAndOptions.this, "Wallpaper Changed", Toast.LENGTH_SHORT).show();
 
 
                 } catch (IOException e) {
-                    Toast.makeText(ShowLargeImageWithDetailsAndOptions.this, "wallpaper error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShowLargeImageWithDetailsAndOptions.this, "wallpaper error " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -181,8 +194,12 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
 
             @Override
             public void onPrepareLoad(final Drawable placeHolderDrawable) {
-                Log.d("TAG", "Prepare Load");
-                Toast.makeText(ShowLargeImageWithDetailsAndOptions.this, "Downloading image", Toast.LENGTH_SHORT).show();
+
+
+                progressDialog.setMessage("Downloading image");
+                progressDialog.show();
+
+                // Toast.makeText(ShowLargeImageWithDetailsAndOptions.this, "Downloading image", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -190,8 +207,7 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
     }
 
 
-
-    public void GetScreenWidthHeight(){
+    public void GetScreenWidthHeight() {
 
         displayMetrics = new DisplayMetrics();
 
@@ -203,27 +219,5 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
 
     }
 
-
-
-    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
-        // Raw height and width of image
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-
-        if (height > reqHeight || width > reqWidth) {
-
-            // Calculate ratios of height and width to requested height and width
-            final int heightRatio = Math.round((float) height / (float) reqHeight);
-            final int widthRatio = Math.round((float) width / (float) reqWidth);
-
-            // Choose the smallest ratio as inSampleSize value, this will guarantee
-            // a final image with both dimensions larger than or equal to the
-            // requested height and width.
-            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
-        }
-
-        return inSampleSize;
-    }
 
 }

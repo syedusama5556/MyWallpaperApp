@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,28 +25,28 @@ import usama.utech.wallpaperapp.Model.ImageModelClass;
 import usama.utech.wallpaperapp.R;
 import usama.utech.wallpaperapp.ShowLargeImageWithDetailsAndOptions;
 
-public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.MyItemViewHolder> {
+public class HomeImageAdapter extends RecyclerView.Adapter<HomeImageAdapter.MyItemViewHolderNew> {
 
 
     Context context;
     ArrayList<ImageModelClass> imageModelClasses = new ArrayList<>();
     private HttpURLConnection conn;
 
-    public ImageLoadAdapter(Context context, ArrayList<ImageModelClass> imageModelClasses) {
+    public HomeImageAdapter(Context context, ArrayList<ImageModelClass> imageModelClasses) {
         this.context = context;
         this.imageModelClasses = imageModelClasses;
     }
 
     @NonNull
     @Override
-    public MyItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyItemViewHolderNew onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_v_item, null);
-        return new MyItemViewHolder(view);
+        View view = LayoutInflater.from(context).inflate(R.layout.card_for_homepage_item, null);
+        return new MyItemViewHolderNew(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyItemViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull MyItemViewHolderNew holder, final int position) {
 
         ImageModelClass imageModel = imageModelClasses.get(position);
 
@@ -61,7 +62,7 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.MyIt
 
         if (imageModel.getVerified().equals("true")) {
 
-
+            holder.textView.setText(imageModel.getCategory());
 
 
 
@@ -78,12 +79,11 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.MyIt
 
                     Intent intent = new Intent(context, ShowLargeImageWithDetailsAndOptions.class);
 
-                    intent.putExtra("pos",position);
+                    intent.putExtra("pos", position);
 
-                    Toast.makeText(context, "text"+position, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "text" + position, Toast.LENGTH_SHORT).show();
 
                     context.startActivity(intent);
-
 
 
                 }
@@ -99,16 +99,18 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.MyIt
         return imageModelClasses.size();
     }
 
-    class MyItemViewHolder extends RecyclerView.ViewHolder {
+    class MyItemViewHolderNew extends RecyclerView.ViewHolder {
 
         CardView myCard;
         ImageView myImage;
+        TextView textView;
 
-        public MyItemViewHolder(@NonNull View itemView) {
+        public MyItemViewHolderNew(@NonNull View itemView) {
             super(itemView);
 
-            myCard = itemView.findViewById(R.id.rec_mycard);
-            myImage = itemView.findViewById(R.id.rec_myimgV);
+            myCard = itemView.findViewById(R.id.card_home);
+            myImage = itemView.findViewById(R.id.rec_img_card);
+            textView = itemView.findViewById(R.id.rec_name_card);
         }
     }
 }

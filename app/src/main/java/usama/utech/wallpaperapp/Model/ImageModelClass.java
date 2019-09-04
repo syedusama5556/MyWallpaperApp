@@ -2,15 +2,16 @@ package usama.utech.wallpaperapp.Model;
 
 public class ImageModelClass {
 
-    String image_id,image_url,verified;
+    String image_id,image_url,verified,category;
 
     public ImageModelClass() {
     }
 
-    public ImageModelClass(String image_id, String image_url, String verified) {
+    public ImageModelClass(String image_id, String image_url, String verified, String category) {
         this.image_id = image_id;
         this.image_url = image_url;
         this.verified = verified;
+        this.category = category;
     }
 
     public String getImage_id() {
@@ -35,5 +36,13 @@ public class ImageModelClass {
 
     public void setVerified(String verified) {
         this.verified = verified;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

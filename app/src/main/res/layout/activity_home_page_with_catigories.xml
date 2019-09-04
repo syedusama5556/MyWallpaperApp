@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context=".HomePageWithCatigories">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="10dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:srcCompat="@drawable/logo" />
+
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="Night"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="50dp"
+                    android:onClick="allNightWallpaper"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="8dp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:srcCompat="@drawable/ic_arrow_forward_black" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recy_home_page"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt1" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="Abstract"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="50dp"
+                    android:onClick="allAbstractWallpaper"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="8dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:srcCompat="@drawable/ic_arrow_forward_black" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_home_abstract"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt2" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="Nature"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="50dp"
+                    android:onClick="allNatureWallpaper"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="8dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:srcCompat="@drawable/ic_arrow_forward_black" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_home_nature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt3" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="Travel"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img4"
+                    android:layout_width="50dp"
+                    android:onClick="allTravelWallpaper"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="8dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:srcCompat="@drawable/ic_arrow_forward_black" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_home_travel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt4" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
