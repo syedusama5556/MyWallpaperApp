@@ -4,26 +4,45 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/profileMenu"
-            android:icon="@drawable/ic_add_black_24dp"
-            android:title="My Profile" />
-        <item
-            android:id="@+id/findserviceMenu"
-            android:icon="@drawable/ic_add_black_24dp"
-            android:title="Post Your Travel" />
-        <item
-            android:id="@+id/messangerMenue"
-            android:icon="@drawable/ic_add_black_24dp"
-            android:title="Messanger" />
-        <item
-            android:id="@+id/requests"
-            android:icon="@drawable/ic_add_black_24dp"
-            android:title="Requests" />
-        <item
-            android:id="@+id/logoutMenu"
-            android:icon="@drawable/ic_add_black_24dp"
-            android:title="Logout" />
+        <item android:title="Categories">
+            <menu>
+                <item
+                    android:id="@+id/Abstract_menu"
+                    android:title="Abstract" />
+                <item
+                    android:id="@+id/Architecture_menu"
+                    android:title="Architecture" />
+                <item
+                    android:id="@+id/Animals_menu"
+                    android:title="Animals" />
+                <item
+                    android:id="@+id/Nature_menu"
+                    android:title="Nature" />
+                <item
+                    android:id="@+id/Night_menu"
+                    android:title="Night" />
+
+                <item
+                    android:id="@+id/Deserts_menu"
+                    android:title="Deserts" />
+                <item
+                    android:id="@+id/Cars_menu"
+                    android:title="Cars" />
+                <item
+                    android:id="@+id/Universe_menu"
+                    android:title="Universe" />
+                <item
+                    android:id="@+id/Travel_menu"
+                    android:title="Travel" />
+
+                <item
+                    android:id="@+id/Sports_menu"
+                    android:title="Sports" />
+                <item
+                    android:id="@+id/Texture_menu"
+                    android:title="Texture" />
+            </menu>
+        </item>
     </group>
 
     <item android:title="Communicate">
@@ -32,10 +51,6 @@
                 android:id="@+id/nav_shareNav"
                 android:icon="@drawable/ic_add_black_24dp"
                 android:title="Share" />
-            <item
-                android:id="@+id/nav_sendNav"
-                android:icon="@drawable/ic_add_black_24dp"
-                android:title="Send" />
 
             <item
                 android:id="@+id/contactMenu"

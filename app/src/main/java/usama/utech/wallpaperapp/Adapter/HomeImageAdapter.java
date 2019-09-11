@@ -48,7 +48,7 @@ public class HomeImageAdapter extends RecyclerView.Adapter<HomeImageAdapter.MyIt
     @Override
     public void onBindViewHolder(@NonNull MyItemViewHolderNew holder, final int position) {
 
-        ImageModelClass imageModel = imageModelClasses.get(position);
+        final ImageModelClass imageModel = imageModelClasses.get(position);
 
 
         try {
@@ -81,6 +81,7 @@ public class HomeImageAdapter extends RecyclerView.Adapter<HomeImageAdapter.MyIt
 
                     intent.putExtra("pos", position);
 
+                    intent.putExtra("categori", imageModel.getCategory());
                     Toast.makeText(context, "text" + position, Toast.LENGTH_SHORT).show();
 
                     context.startActivity(intent);

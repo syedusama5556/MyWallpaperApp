@@ -258,4 +258,10 @@ public class HomePageWithCatigories extends AppCompatActivity {
 
         startActivity(intent);
     }
+
+    public void showAllWallpaperPage(View view) {
+
+        Intent intent = new Intent(this,ShowAllCategoriList.class);
+        startActivity(intent);
+    }
 }

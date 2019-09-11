@@ -27,7 +27,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/rec_V_home"/>
+            android:id="@+id/rec_V_home"
+
+            android:background="@color/black"
+
+            />
 
     </FrameLayout>
 

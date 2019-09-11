@@ -22,7 +22,7 @@ public class AddNewImageUrl extends AppCompatActivity implements View.OnClickLis
     private TextInputEditText editTextUrl;
     Spinner spinner_category;
 
-    String categoryies[] = new String[]{"Abstract", "Nature", "Animal", "Night", "Deserts"};
+
 
     String selectedCategori = "";
 
@@ -37,7 +37,7 @@ public class AddNewImageUrl extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.btn_name).setOnClickListener(this);
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item_layout, categoryies);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item_layout, Comman.categoryies);
 
         spinner_category.setAdapter(adapter);
 

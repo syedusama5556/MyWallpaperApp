@@ -53,6 +53,7 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
     private int visibleThreshold;
 
     String selectedItem = "";
+    static boolean scroll_down;
 
 
     @Override
@@ -84,12 +85,12 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        if (getIntent() != null) {
+        if (getIntent().getStringExtra("dataitem") != null && !getIntent().getStringExtra("dataitem").equals("")) {
 
             selectedItem = getIntent().getStringExtra("dataitem");
 
 
-            imageLoadAdapter = new ImageLoadAdapter(ShowAllWallpapers.this, imageModelClassArrayList);
+            imageLoadAdapter = new ImageLoadAdapter(ShowAllWallpapers.this, imageModelClassArrayList, false);
 
 
             final StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
@@ -125,6 +126,32 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
             recyclerView.setAdapter(imageLoadAdapter);
 
 
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    if (scroll_down) {
+                        bottomapp.performHide();
+                    } else {
+                        bottomapp.performShow();
+                    }
+                }
+
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    if (dy > 70) {
+                        //scroll down
+                        scroll_down = true;
+
+                    } else if (dy < -5) {
+                        //scroll up
+                        scroll_down = false;
+                    }
+                }
+            });
+
+
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -157,33 +184,59 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
         } else {
 
 
-            imageLoadAdapter = new ImageLoadAdapter(ShowAllWallpapers.this, imageModelClassArrayList);
+            imageLoadAdapter = new ImageLoadAdapter(ShowAllWallpapers.this, imageModelClassArrayList, false);
 
 
             final StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
 
+//            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//                @Override
+//                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+//                    super.onScrolled(recyclerView, dx, dy);
+//
+//                    if (dy > 0) {
+//
+//                        totalItemCount = staggeredGridLayoutManager.getItemCount();
+//                        if (lastPositions == null)
+//                            lastPositions = new int[staggeredGridLayoutManager.getSpanCount()];
+//                        lastPositions = staggeredGridLayoutManager.findLastCompletelyVisibleItemPositions(lastPositions);
+//                        lastVisibleItem = Math.max(lastPositions[0], lastPositions[1]);//findMax(lastPositions);
+//
+//                        if (!loading && totalItemCount >= 20 && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+//                            // End has been reached
+//
+//
+//                            if (onLoadMoreListener != null) {
+//                                onLoadMoreListener.onLoadMore();
+//                            }
+//                            loading = true;
+//                        }
+//                    }
+//                }
+//            });
+
+
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    if (scroll_down) {
+                        bottomapp.performHide();
+                    } else {
+                        bottomapp.performShow();
+                    }
+                }
+
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
+                    if (dy > 70) {
+                        //scroll down
+                        scroll_down = true;
 
-                    if (dy > 0) {
-
-                        totalItemCount = staggeredGridLayoutManager.getItemCount();
-                        if (lastPositions == null)
-                            lastPositions = new int[staggeredGridLayoutManager.getSpanCount()];
-                        lastPositions = staggeredGridLayoutManager.findLastCompletelyVisibleItemPositions(lastPositions);
-                        lastVisibleItem = Math.max(lastPositions[0], lastPositions[1]);//findMax(lastPositions);
-
-                        if (!loading && totalItemCount >= 20 && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
-                            // End has been reached
-
-
-                            if (onLoadMoreListener != null) {
-                                onLoadMoreListener.onLoadMore();
-                            }
-                            loading = true;
-                        }
+                    } else if (dy < -5) {
+                        //scroll up
+                        scroll_down = false;
                     }
                 }
             });
@@ -300,28 +353,45 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.profileMenu) {
+        if (id == R.id.Abstract_menu) {
+            Toast.makeText(this, "Abstract_menu", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.Architecture_menu) {
 
+            Toast.makeText(this, "Architecture_menu", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.findserviceMenu) {
+        } else if (id == R.id.Animals_menu) {
 
-
-        } else if (id == R.id.messangerMenue) {
-
+            Toast.makeText(this, "Animals_menu", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.contactMenu) {
             Toast.makeText(this, "contactMenu", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.requests) {
 
+        } else if (id == R.id.Nature_menu) {
 
-        } else if (id == R.id.logoutMenu) {
+            Toast.makeText(this, "Nature_menu", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.Night_menu) {
+            Toast.makeText(this, "Night_menu", Toast.LENGTH_SHORT).show();
 
 
         } else if (id == R.id.nav_shareNav) {
             Toast.makeText(this, "nav_shareNav", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.nav_sendNav) {
-            Toast.makeText(this, "nav_sendNav", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.Deserts_menu) {
+            Toast.makeText(this, "Deserts_menu", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.Cars_menu) {
+            Toast.makeText(this, "Cars_menu", Toast.LENGTH_SHORT).show();
+
+
+        } else if (id == R.id.Universe_menu) {
+            Toast.makeText(this, "Universe_menu", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.Travel_menu) {
+            Toast.makeText(this, "Travel_menu", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.Sports_menu) {
+            Toast.makeText(this, "Sports_menu", Toast.LENGTH_SHORT).show();
 
         }
 

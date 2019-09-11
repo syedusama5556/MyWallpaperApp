@@ -29,18 +29,28 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.MyIt
 
     Context context;
     ArrayList<ImageModelClass> imageModelClasses = new ArrayList<>();
-    private HttpURLConnection conn;
+    HttpURLConnection conn;
+    View view;
+    boolean isHomePage;
 
-    public ImageLoadAdapter(Context context, ArrayList<ImageModelClass> imageModelClasses) {
+    public ImageLoadAdapter(Context context, ArrayList<ImageModelClass> imageModelClasses, boolean isHomePage) {
         this.context = context;
         this.imageModelClasses = imageModelClasses;
+        this.isHomePage = isHomePage;
     }
 
     @NonNull
     @Override
     public MyItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (isHomePage) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_v_item, null);
+            view = LayoutInflater.from(context).inflate(R.layout.recycler_v_item, null);
+        } else {
+
+            view = LayoutInflater.from(context).inflate(R.layout.recycler_v_item, null);
+
+        }
+
         return new MyItemViewHolder(view);
     }
 
@@ -62,9 +72,6 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.MyIt
         if (imageModel.getVerified().equals("true")) {
 
 
-
-
-
             RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.skeleton_style);
 
             Glide.with(context)
@@ -78,12 +85,11 @@ public class ImageLoadAdapter extends RecyclerView.Adapter<ImageLoadAdapter.MyIt
 
                     Intent intent = new Intent(context, ShowLargeImageWithDetailsAndOptions.class);
 
-                    intent.putExtra("pos",position);
+                    intent.putExtra("pos", position);
 
-                    Toast.makeText(context, "text"+position, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "text" + position, Toast.LENGTH_SHORT).show();
 
                     context.startActivity(intent);
-
 
 
                 }

@@ -18,20 +18,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomePageWithCatigories">
-
+        <activity android:name=".ShowAllCategoriList">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddNewImageUrl"></activity>
-        <activity android:name=".AboutPage"></activity>
-        <activity android:name=".ShowAllWallpapers">
+        <activity android:name=".HomePageWithCatigories">
+
 
         </activity>
-        <activity android:name=".ShowLargeImageWithDetailsAndOptions"></activity>
+        <activity android:name=".AddNewImageUrl" />
+        <activity android:name=".AboutPage" />
+        <activity android:name=".ShowAllWallpapers"></activity>
+        <activity android:name=".ShowLargeImageWithDetailsAndOptions" />
     </application>
 
 </manifest>

@@ -50,6 +50,7 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
 
     private WallpaperManager wallpaperManager;
     private ProgressDialog progressDialog;
+    private String selectedCategori;
 
 
     @Override
@@ -72,6 +73,8 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
 
             positionFormHomeScreen = getIntent().getIntExtra("pos", 0);
 
+            selectedCategori = getIntent().getStringExtra("categori");
+
             Toast.makeText(this, "" + positionFormHomeScreen, Toast.LENGTH_SHORT).show();
         }
 
@@ -85,10 +88,22 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
 
                     ImageModelClass imageModelClass = dataSnap.getValue(ImageModelClass.class);
 
-                    imageModelClasses.add(imageModelClass);
+                    if (selectedCategori != null && !selectedCategori.equals("")) {
 
-                    adapter.notifyDataSetChanged();
+                        if (imageModelClass.getCategory().equals(selectedCategori)) {
 
+                            imageModelClasses.add(imageModelClass);
+
+                            adapter.notifyDataSetChanged();
+                        }
+
+                    } else {
+
+                        imageModelClasses.add(imageModelClass);
+
+                        adapter.notifyDataSetChanged();
+
+                    }
 
                 }
 
@@ -103,7 +118,6 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
 
         adapter = new ViewPagerImageAdapter(this, imageModelClasses);
         viewPager.setAdapter(adapter);
-
 
 
         viewPager.postDelayed(new Runnable() {
