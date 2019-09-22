@@ -11,6 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ethanhua.skeleton.Skeleton;
 import com.ethanhua.skeleton.SkeletonScreen;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,9 +41,11 @@ public class HomePageWithCatigories extends AppCompatActivity {
     RecyclerView recyclerViewNight, recyclerViewAbstract, recyclerViewNature, recyclerViewTravel;
     private HomeImageAdapter imageLoadAdapterNight,imageLoadAdapterNature,imageLoadAdapterAbstract,imageLoadAdapterTravel;
     private DatabaseReference databaseReference;
+    private AdView mAdView;
 
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page_with_catigories);
@@ -49,7 +56,14 @@ public class HomePageWithCatigories extends AppCompatActivity {
         recyclerViewAbstract = (RecyclerView) findViewById(R.id.rec_home_abstract);
         recyclerViewNature = (RecyclerView) findViewById(R.id.rec_home_nature);
         recyclerViewTravel = (RecyclerView) findViewById(R.id.rec_home_travel);
-
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         databaseReference = FirebaseDatabase.getInstance().getReference(Comman.wallpaper_refrence);
 //
