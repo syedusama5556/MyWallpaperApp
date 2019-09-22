@@ -2,7 +2,10 @@ package usama.utech.wallpaperapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ethanhua.skeleton.Skeleton;
 import com.ethanhua.skeleton.SkeletonScreen;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -43,6 +48,10 @@ public class HomePageWithCatigories extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private AdView mAdView;
 
+    Handler handler;
+
+    //InterstitialAd ads
+    private InterstitialAd mInterstitialAd;
 
     @Override
 
@@ -64,6 +73,22 @@ public class HomePageWithCatigories extends AppCompatActivity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        MobileAds.initialize(this,
+                "ca-app-pub-3940256099942544~3347511713");
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+
+        AdRequest adRequest1 = new AdRequest.Builder().build();
+        mInterstitialAd.loadAd(adRequest1);
+
+        mInterstitialAd.setAdListener(new AdListener(){
+
+            @Override
+            public void onAdClosed() {
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+        });
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference(Comman.wallpaper_refrence);
 //
@@ -241,26 +266,51 @@ public class HomePageWithCatigories extends AppCompatActivity {
     }
 
     public void allNatureWallpaper(View view) {
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
         Intent intent = new Intent(this,ShowAllWallpapers.class);
 
         intent.putExtra("dataitem","Nature");
+
 
         startActivity(intent);
 
     }
 
     public void allTravelWallpaper(View view) {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
         Intent intent = new Intent(this,ShowAllWallpapers.class);
 
         intent.putExtra("dataitem","Travel");
+
 
         startActivity(intent);
     }
 
     public void allAbstractWallpaper(View view) {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Toast.makeText(this, "Ad not loaded yet", Toast.LENGTH_SHORT).show();
+        }
         Intent intent = new Intent(this,ShowAllWallpapers.class);
 
         intent.putExtra("dataitem","Abstract");
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
+
+
 
         startActivity(intent);
     }
@@ -269,6 +319,12 @@ public class HomePageWithCatigories extends AppCompatActivity {
         Intent intent = new Intent(this,ShowAllWallpapers.class);
 
         intent.putExtra("dataitem","Night");
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
+
 
         startActivity(intent);
     }
@@ -276,6 +332,18 @@ public class HomePageWithCatigories extends AppCompatActivity {
     public void showAllWallpaperPage(View view) {
 
         Intent intent = new Intent(this,ShowAllCategoriList.class);
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+        }
+
+
         startActivity(intent);
+    }
+
+    public void loadInterstitialAd(){
+
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 }
