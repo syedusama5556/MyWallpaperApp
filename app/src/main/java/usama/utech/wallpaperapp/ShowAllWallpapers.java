@@ -97,7 +97,7 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
 
-        // loading ads
+        // loading ads will check again.
         MobileAds.initialize(this,
                 "ca-app-pub-3940256099942544~3347511713");
         mInterstitialAd = new InterstitialAd(this);
@@ -106,13 +106,6 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
         AdRequest adRequest1 = new AdRequest.Builder().build();
         mInterstitialAd.loadAd(adRequest1);
 
-        mInterstitialAd.setAdListener(new AdListener(){
-
-            @Override
-            public void onAdClosed() {
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            }
-        });
 
 
 
@@ -310,8 +303,44 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ShowAllWallpapers.this, AddNewImageUrl.class));
-                finish();
+                mInterstitialAd.setAdListener(new AdListener(){
+
+                    @Override
+                    public void onAdClosed() {
+                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                        Intent intent = new Intent(ShowAllWallpapers.this,AddNewImageUrl.class);
+
+
+                        startActivity(intent);
+                    }
+                    @Override
+                    public void onAdFailedToLoad(int errorCode) {
+
+                        Toast.makeText(ShowAllWallpapers.this, "Failed to load", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onAdLoaded() {
+                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                        Intent intent = new Intent(ShowAllWallpapers.this,AddNewImageUrl.class);
+
+
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onAdOpened() {
+
+                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                        Intent intent = new Intent(ShowAllWallpapers.this,AddNewImageUrl.class);
+
+
+                        startActivity(intent);
+
+                    }
+                });
+
+
 
             }
         });

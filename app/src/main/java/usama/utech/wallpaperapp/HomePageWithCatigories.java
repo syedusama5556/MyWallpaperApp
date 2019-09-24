@@ -73,6 +73,8 @@ public class HomePageWithCatigories extends AppCompatActivity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        //will check again tomorrow.
         MobileAds.initialize(this,
                 "ca-app-pub-3940256099942544~3347511713");
         mInterstitialAd = new InterstitialAd(this);
@@ -267,58 +269,135 @@ public class HomePageWithCatigories extends AppCompatActivity {
 
     public void allNatureWallpaper(View view) {
 
+
+
+
+        mInterstitialAd.setAdListener(new AdListener(){
+
+            @Override
+            public void onAdClosed() {
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+
+                intent.putExtra("dataitem","Nature");
+
+                startActivity(intent);
+            }
+        });
+
+
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
             Log.d("TAG", "The interstitial wasn't loaded yet.");
         }
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Nature");
-
-
-        startActivity(intent);
 
     }
 
     public void allTravelWallpaper(View view) {
+
+        mInterstitialAd.setAdListener(new AdListener(){
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+
+                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+
+                intent.putExtra("dataitem","Travel");
+
+
+                startActivity(intent);
+            }
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+
+                intent.putExtra("dataitem","Travel");
+
+
+                startActivity(intent);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+
+                intent.putExtra("dataitem","Travel");
+
+
+                startActivity(intent);
+            }
+
+            @Override
+            public void onAdOpened() {
+                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+
+                intent.putExtra("dataitem","Travel");
+
+
+                startActivity(intent);
+
+            }
+        });
+
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
             Log.d("TAG", "The interstitial wasn't loaded yet.");
         }
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Travel");
-
-
-        startActivity(intent);
     }
 
     public void allAbstractWallpaper(View view) {
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        } else {
-            Toast.makeText(this, "Ad not loaded yet", Toast.LENGTH_SHORT).show();
-        }
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Abstract");
+        mInterstitialAd.setAdListener(new AdListener(){
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+
+                intent.putExtra("dataitem","Abstract");
+
+
+                startActivity(intent);
+            }
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+
+                intent.putExtra("dataitem","Abstract");
+
+
+                startActivity(intent);
+            }
+        });
+
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
             Log.d("TAG", "The interstitial wasn't loaded yet.");
         }
 
-
-
-        startActivity(intent);
     }
 
     public void allNightWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Night");
+        mInterstitialAd.setAdListener(new AdListener(){
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+
+                intent.putExtra("dataitem","Night");
+                startActivity(intent);
+            }
+        });
+
+
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
@@ -326,24 +405,37 @@ public class HomePageWithCatigories extends AppCompatActivity {
         }
 
 
-        startActivity(intent);
+
     }
 
     public void showAllWallpaperPage(View view) {
 
-        Intent intent = new Intent(this,ShowAllCategoriList.class);
+        mInterstitialAd.setAdListener(new AdListener(){
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllCategoriList.class);
+
+
+                startActivity(intent);
+            }
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllCategoriList.class);
+
+
+                startActivity(intent);
+            }
+        });
+
+
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
             Log.d("TAG", "The interstitial wasn't loaded yet.");
         }
 
-
-        startActivity(intent);
     }
 
-    public void loadInterstitialAd(){
-
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-    }
 }
