@@ -76,9 +76,9 @@ public class HomePageWithCatigories extends AppCompatActivity {
 
         //will check again tomorrow.
         MobileAds.initialize(this,
-                "ca-app-pub-3940256099942544~3347511713");
+                getResources().getString(R.string.appid_admob));
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_add));
 
         AdRequest adRequest1 = new AdRequest.Builder().build();
         mInterstitialAd.loadAd(adRequest1);

@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Wallpaperry</string>
     <string name="guidlines">1) Copy image url from any source (make sure that it is a direct link)\n2) Pase it in the box and press submit</string>
 
 
-    <string name="interstitial_add">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="interstitial_add">ca-app-pub-9243738527809292/2034515097</string>
+    <string name="banner_add_id">ca-app-pub-9243738527809292/6511982008</string>
+    <string name="appid_admob">ca-app-pub-9243738527809292~7747389661</string>
+
     <string name="navigation_drawer_open">Open navigation drawar</string>
     <string name="navigation_drawer_close">Close navigation drawar</string>
 
