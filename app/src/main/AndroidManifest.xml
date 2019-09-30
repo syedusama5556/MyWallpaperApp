@@ -37,7 +37,7 @@
         </activity>
         <activity android:name=".AddNewImageUrl" />
         <activity android:name=".AboutPage" />
-        <activity android:name=".ShowAllWallpapers"></activity>
+        <activity android:name=".ShowAllWallpapers" />
         <activity android:name=".ShowLargeImageWithDetailsAndOptions" />
     </application>
 

@@ -35,7 +35,7 @@
                     android:layout_margin="10dp"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:srcCompat="@drawable/logo" />
+                    app:srcCompat="@drawable/ic_launcher_background" />
 
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>

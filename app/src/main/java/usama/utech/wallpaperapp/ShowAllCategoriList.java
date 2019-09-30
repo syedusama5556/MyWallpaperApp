@@ -132,5 +132,10 @@ public class ShowAllCategoriList extends AppCompatActivity {
     }
 
 
+    public void showAllWallpaper(View view) {
+        Intent intent = new Intent(this,ShowAllWallpapers.class);
 
+
+        startActivity(intent);
+    }
 }

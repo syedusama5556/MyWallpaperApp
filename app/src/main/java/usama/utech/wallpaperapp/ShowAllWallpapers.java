@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -105,8 +104,6 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
 
         AdRequest adRequest1 = new AdRequest.Builder().build();
         mInterstitialAd.loadAd(adRequest1);
-
-
 
 
         if (getIntent().getStringExtra("dataitem") != null && !getIntent().getStringExtra("dataitem").equals("")) {
@@ -303,48 +300,48 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
             @Override
             public void onClick(View v) {
 
-                mInterstitialAd.setAdListener(new AdListener(){
 
-                    @Override
-                    public void onAdClosed() {
-                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent intent = new Intent(ShowAllWallpapers.this,AddNewImageUrl.class);
+                if (mInterstitialAd.isLoaded()) {
+                    mInterstitialAd.show();
 
+                    Intent intent = new Intent(ShowAllWallpapers.this, AddNewImageUrl.class);
 
-                        startActivity(intent);
-                    }
-                    @Override
-                    public void onAdFailedToLoad(int errorCode) {
+                    startActivity(intent);
+                }else {
 
-                        Toast.makeText(ShowAllWallpapers.this, "Failed to load", Toast.LENGTH_SHORT).show();
-                    }
+                    Intent intent = new Intent(ShowAllWallpapers.this, AddNewImageUrl.class);
 
-                    @Override
-                    public void onAdLoaded() {
-                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent intent = new Intent(ShowAllWallpapers.this,AddNewImageUrl.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
+        mInterstitialAd.setAdListener(new AdListener() {
 
-                        startActivity(intent);
-                    }
+            @Override
+            public void onAdClosed() {
 
-                    @Override
-                    public void onAdOpened() {
+            }
 
-                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                        Intent intent = new Intent(ShowAllWallpapers.this,AddNewImageUrl.class);
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
 
 
-                        startActivity(intent);
+            }
 
-                    }
-                });
+            @Override
+            public void onAdLoaded() {
 
+                mInterstitialAd.show();
+
+            }
+
+            @Override
+            public void onAdOpened() {
 
 
             }
         });
-
 
     }
 
@@ -461,7 +458,7 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
     }
 
 
-    public void loadInterstitialAd(){
+    public void loadInterstitialAd() {
 
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
