@@ -8,14 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class ShowAllCategoriList extends AppCompatActivity {
 
     private AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,109 +29,102 @@ public class ShowAllCategoriList extends AppCompatActivity {
 
 
     public void allNatureWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Nature");
+        intent.putExtra("dataitem", "Nature");
 
         startActivity(intent);
 
     }
 
     public void allAbstractWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Abstract");
+        intent.putExtra("dataitem", "Abstract");
 
         startActivity(intent);
     }
 
     public void allNightWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Night");
+        intent.putExtra("dataitem", "Night");
 
         startActivity(intent);
     }
 
 
     public void allCarWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Cars");
+        intent.putExtra("dataitem", "Cars");
 
         startActivity(intent);
     }
 
 
-
-
-
-
-
     public void allAnimalWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Animals");
+        intent.putExtra("dataitem", "Animals");
 
         startActivity(intent);
 
     }
 
     public void allArchetectureWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Architecture");
+        intent.putExtra("dataitem", "Architecture");
 
         startActivity(intent);
     }
 
     public void allDessertsWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Deserts");
+        intent.putExtra("dataitem", "Deserts");
 
         startActivity(intent);
     }
 
     public void allSportsWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Sports");
+        intent.putExtra("dataitem", "Sports");
 
         startActivity(intent);
     }
 
 
-
-
     public void allTextureWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Texture");
+        intent.putExtra("dataitem", "Texture");
 
         startActivity(intent);
 
     }
 
     public void allTravelWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Travel");
+        intent.putExtra("dataitem", "Travel");
 
         startActivity(intent);
     }
 
     public void allUniverseWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
-        intent.putExtra("dataitem","Universe");
+        intent.putExtra("dataitem", "Universe");
 
         startActivity(intent);
     }
 
 
     public void showAllWallpaper(View view) {
-        Intent intent = new Intent(this,ShowAllWallpapers.class);
+        Intent intent = new Intent(this, ShowAllWallpapers.class);
 
 
         startActivity(intent);

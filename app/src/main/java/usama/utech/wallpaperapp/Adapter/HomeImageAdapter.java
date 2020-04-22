@@ -65,7 +65,6 @@ public class HomeImageAdapter extends RecyclerView.Adapter<HomeImageAdapter.MyIt
             holder.textView.setText(imageModel.getCategory());
 
 
-
             RequestOptions requestOptions = new RequestOptions().placeholder(R.drawable.skeleton_style);
 
             Glide.with(context)

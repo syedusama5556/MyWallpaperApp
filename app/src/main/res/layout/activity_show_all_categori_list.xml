@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
     tools:context=".ShowAllCategoriList">
 
@@ -21,9 +21,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="allNatureWallpaper"
-                >
-
+                android:onClick="allNatureWallpaper">
 
 
                 <ImageView
@@ -36,22 +34,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:text="Nature"
-                    android:textSize="40sp"
                     android:layout_centerInParent="true"
                     android:layout_centerVertical="true"
-                    />
+                    android:text="Nature"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="allAbstractWallpaper"
-                >
-
+                android:onClick="allAbstractWallpaper">
 
 
                 <ImageView
@@ -64,13 +60,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:text="Abstract"
-                    android:textSize="40sp"
                     android:layout_centerInParent="true"
                     android:layout_centerVertical="true"
-                    />
+                    android:text="Abstract"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
@@ -78,28 +73,25 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="allNightWallpaper"
-                >
+                android:onClick="allNightWallpaper">
 
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_margin="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/night" />
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:layout_margin="5dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/night" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:text="Night"
-                        android:textSize="40sp"
-                       android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:text="Night"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
@@ -108,7 +100,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="allCarWallpaper">
-
 
 
                 <ImageView
@@ -121,13 +112,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:text="Cars"
-                    android:textSize="40sp"
                     android:layout_centerInParent="true"
                     android:layout_centerVertical="true"
-                    />
+                    android:text="Cars"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
@@ -136,9 +126,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="allAnimalWallpaper"
-                >
-
+                android:onClick="allAnimalWallpaper">
 
 
                 <ImageView
@@ -151,20 +139,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
+                    android:layout_centerInParent="true"
                     android:text="Animals"
+                    android:textColor="@color/white"
                     android:textSize="40sp"
-                  android:layout_centerInParent="true"
-                    />
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="allArchetectureWallpaper">
-
 
 
                 <ImageView
@@ -177,21 +164,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:text="Architecture"
-                    android:textSize="40sp"
                     android:layout_centerInParent="true"
-                    />
+                    android:text="Architecture"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:onClick="allDessertsWallpaper"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:onClick="allDessertsWallpaper">
 
 
                 <ImageView
@@ -204,20 +189,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:text="Desserts"
-                    android:textSize="40sp"
                     android:layout_centerInParent="true"
-                    />
+                    android:text="Desserts"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
-            <RelativeLayout
-                android:onClick="allSportsWallpaper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="allSportsWallpaper">
 
 
                 <ImageView
@@ -230,20 +214,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
+                    android:layout_centerInParent="true"
                     android:text="Sports"
+                    android:textColor="@color/white"
                     android:textSize="40sp"
-                   android:layout_centerInParent="true"
-                    />
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
-            <RelativeLayout
-                android:onClick="allTextureWallpaper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="allTextureWallpaper">
 
 
                 <ImageView
@@ -256,20 +239,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:text="Texture"
-                    android:textSize="40sp"
                     android:layout_centerInParent="true"
-                    />
+                    android:text="Texture"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
-            <RelativeLayout
-                android:onClick="allTravelWallpaper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="allTravelWallpaper">
 
 
                 <ImageView
@@ -282,21 +264,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
+                    android:layout_centerInParent="true"
                     android:text="Travel"
+                    android:textColor="@color/white"
                     android:textSize="40sp"
-                   android:layout_centerInParent="true"
-                    />
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:onClick="allUniverseWallpaper"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:onClick="allUniverseWallpaper">
 
 
                 <ImageView
@@ -309,12 +289,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:text="Universe"
-                    android:textSize="40sp"
                     android:layout_centerInParent="true"
-                    />
+                    android:text="Universe"
+                    android:textColor="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
@@ -328,11 +307,11 @@
                 <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:textSize="15dp"
-                    android:text="Show All WallPapers"
-                    app:icon="@drawable/ic_add_black_24dp"
                     android:layout_centerInParent="true"
-                    android:onClick="showAllWallpaper" />
+                    android:onClick="showAllWallpaper"
+                    android:text="Show All WallPapers"
+                    android:textSize="15dp"
+                    app:icon="@drawable/ic_add_black_24dp" />
 
 
             </RelativeLayout>
@@ -341,16 +320,17 @@
 
 
     </ScrollView>
+
     <com.google.android.gms.ads.AdView
 
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
+        ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-9243738527809292/6511982008">
 
     </com.google.android.gms.ads.AdView>

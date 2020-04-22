@@ -41,29 +41,52 @@ import usama.utech.wallpaperapp.Model.ImageModelClass;
 
 public class ShowAllWallpapers extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    static boolean scroll_down;
     RecyclerView recyclerView;
     ImageLoadAdapter imageLoadAdapter;
     ArrayList<ImageModelClass> imageModelClassArrayList = new ArrayList<>();
+    DatabaseReference databaseReference;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
+    String selectedItem = "";
+    Handler handler;
     private BottomAppBar bottomapp;
     private FloatingActionButton fab_homepage;
-    DatabaseReference databaseReference;
-
     private boolean loading = true;
-    int pastVisiblesItems, visibleItemCount, totalItemCount;
-
     private DrawerLayout drawer;
     private int[] lastPositions;
     private int lastVisibleItem;
     private Paginate.Callbacks onLoadMoreListener;
     private int visibleThreshold;
-
-    String selectedItem = "";
-    static boolean scroll_down;
-
-    Handler handler;
-
     //InterstitialAd ads
     private InterstitialAd mInterstitialAd;
+
+    public static boolean isConnected(Context context) {
+//        ConnectivityManager cm = (ConnectivityManager)context
+//                .getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+//        if (activeNetwork != null && activeNetwork.isConnected()) {
+//            try {
+//                URL url = new URL("http://www.google.com/");
+//                HttpURLConnection urlc = (HttpURLConnection)url.openConnection();
+//                urlc.setRequestProperty("User-Agent", "test");
+//                urlc.setRequestProperty("Connection", "close");
+//                urlc.setConnectTimeout(5000); // mTimeout is in seconds
+//                urlc.connect();
+//                if (urlc.getResponseCode() == 200) {
+//                    return true;
+//                } else {
+//                    return false;
+//                }
+//            } catch (IOException e) {
+//                Toast.makeText(context, "Error checking internet connection", Toast.LENGTH_SHORT).show();
+//                return false;
+//            }
+//        }
+
+        return true;
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +102,9 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
 
         setSupportActionBar(bottomapp);
 
-        fab_homepage = (FloatingActionButton) findViewById(R.id.fab_homepage);
+        fab_homepage = findViewById(R.id.fab_homepage);
 
-        recyclerView = (RecyclerView) findViewById(R.id.rec_V_home);
+        recyclerView = findViewById(R.id.rec_V_home);
 
         databaseReference = FirebaseDatabase.getInstance().getReference(Comman.wallpaper_refrence);
 
@@ -305,7 +328,7 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
                     Intent intent = new Intent(ShowAllWallpapers.this, AddNewImageUrl.class);
 
                     startActivity(intent);
-                }else {
+                } else {
 
                     Intent intent = new Intent(ShowAllWallpapers.this, AddNewImageUrl.class);
 
@@ -340,35 +363,6 @@ public class ShowAllWallpapers extends AppCompatActivity implements NavigationVi
 
             }
         });
-
-    }
-
-
-    public static boolean isConnected(Context context) {
-//        ConnectivityManager cm = (ConnectivityManager)context
-//                .getSystemService(Context.CONNECTIVITY_SERVICE);
-//
-//        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-//        if (activeNetwork != null && activeNetwork.isConnected()) {
-//            try {
-//                URL url = new URL("http://www.google.com/");
-//                HttpURLConnection urlc = (HttpURLConnection)url.openConnection();
-//                urlc.setRequestProperty("User-Agent", "test");
-//                urlc.setRequestProperty("Connection", "close");
-//                urlc.setConnectTimeout(5000); // mTimeout is in seconds
-//                urlc.connect();
-//                if (urlc.getResponseCode() == 200) {
-//                    return true;
-//                } else {
-//                    return false;
-//                }
-//            } catch (IOException e) {
-//                Toast.makeText(context, "Error checking internet connection", Toast.LENGTH_SHORT).show();
-//                return false;
-//            }
-//        }
-
-        return true;
 
     }
 

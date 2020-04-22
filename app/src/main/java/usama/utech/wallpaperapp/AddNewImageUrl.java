@@ -19,30 +19,24 @@ import usama.utech.wallpaperapp.Model.ImageModelClass;
 public class AddNewImageUrl extends AppCompatActivity implements View.OnClickListener {
 
 
-    private TextInputEditText editTextUrl;
     Spinner spinner_category;
-
-
-
     String selectedCategori = "";
+    private TextInputEditText editTextUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_image_url);
 
-        editTextUrl = (TextInputEditText) findViewById(R.id.edit_text_url);
+        editTextUrl = findViewById(R.id.edit_text_url);
 
-        spinner_category = (Spinner) findViewById(R.id.category_spinner);
+        spinner_category = findViewById(R.id.category_spinner);
         findViewById(R.id.btn_name).setOnClickListener(this);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item_layout, Comman.categoryies);
 
         spinner_category.setAdapter(adapter);
-
-
-
 
 
     }
@@ -58,7 +52,7 @@ public class AddNewImageUrl extends AppCompatActivity implements View.OnClickLis
 
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(Comman.wallpaper_refrence).push();
 
-                    ImageModelClass imageModelClass = new ImageModelClass(databaseReference.getKey(), editTextUrl.getText().toString(), "false",selectedCategori);
+                    ImageModelClass imageModelClass = new ImageModelClass(databaseReference.getKey(), editTextUrl.getText().toString(), "false", selectedCategori);
                     databaseReference.setValue(imageModelClass).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -79,17 +73,10 @@ public class AddNewImageUrl extends AppCompatActivity implements View.OnClickLis
     public boolean validateUrl(String url) {
 
 
-        if (url.startsWith("https://") || url.startsWith("http://")) {
-
-//            if (url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".gif") || url.endsWith(".jpeg") || url.endsWith(".JPG") || url.endsWith(".PNG") || url.endsWith(".GIF") || url.endsWith(".JPEG"))
-//            {
-
-            return true;
-//
-//            }
-
-        }
-
-        return false;
+        //            if (url.endsWith(".jpg") || url.endsWith(".png") || url.endsWith(".gif") || url.endsWith(".jpeg") || url.endsWith(".JPG") || url.endsWith(".PNG") || url.endsWith(".GIF") || url.endsWith(".JPEG"))
+        //            {
+        //
+        //            }
+        return url.startsWith("https://") || url.startsWith("http://");
     }
 }

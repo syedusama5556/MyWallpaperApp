@@ -13,8 +13,7 @@
         android:id="@+id/my_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        >
+        android:layout_alignParentTop="true">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -35,7 +34,7 @@
                     android:layout_margin="10dp"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:srcCompat="@drawable/ic_launcher_background" />
+                    app:srcCompat="@drawable/logo" />
 
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -54,20 +53,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="44dp"
-            >
+            android:paddingBottom="44dp">
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="showAllWallpaperPage"
+                android:padding="5dp"
                 android:text="Show All Categories"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:padding="5dp"/>
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -172,8 +170,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/txt4"
@@ -206,23 +203,22 @@
                     />
 
 
-
-
             </RelativeLayout>
 
         </LinearLayout>
 
     </ScrollView>
+
     <com.google.android.gms.ads.AdView
 
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        ads:adSize="BANNER"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
+        ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-9243738527809292/6511982008">
 
     </com.google.android.gms.ads.AdView>

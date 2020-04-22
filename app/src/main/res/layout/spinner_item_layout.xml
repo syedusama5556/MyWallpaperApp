@@ -2,9 +2,8 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textColor="@color/black"
-    android:text="hello"
     android:background="@color/white"
-    >
+    android:text="hello"
+    android:textColor="@color/black">
 
 </TextView>

@@ -66,7 +66,7 @@ public class ShowLargeImageWithDetailsAndOptions extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference(Comman.wallpaper_refrence);
 
 
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.view_pager);
 
 
         if (getIntent() != null) {

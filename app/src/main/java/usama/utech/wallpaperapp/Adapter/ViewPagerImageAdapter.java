@@ -22,13 +22,14 @@ public class ViewPagerImageAdapter extends PagerAdapter {
     Context context;
 
     LayoutInflater mLayoutInflater;
-    ArrayList<ImageModelClass> imageModelClasses ;
+    ArrayList<ImageModelClass> imageModelClasses;
 
-    public ViewPagerImageAdapter(Context context, ArrayList<ImageModelClass> imageModelClasses){
-        this.context=context;
+    public ViewPagerImageAdapter(Context context, ArrayList<ImageModelClass> imageModelClasses) {
+        this.context = context;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.imageModelClasses = imageModelClasses;
-}
+    }
+
     @Override
     public int getCount() {
         return imageModelClasses.size();
@@ -36,14 +37,14 @@ public class ViewPagerImageAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == ((LinearLayout) object);
+        return view == object;
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
         View itemView = mLayoutInflater.inflate(R.layout.viewpager_item, container, false);
 
-        ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
+        ImageView imageView = itemView.findViewById(R.id.imageView);
 
 
         ImageModelClass imageModel = imageModelClasses.get(position);
@@ -58,7 +59,6 @@ public class ViewPagerImageAdapter extends PagerAdapter {
                     .into(imageView);
 
 
-
         }
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,7 @@ public class ViewPagerImageAdapter extends PagerAdapter {
             public void onClick(View v) {
 
 
-                Toast.makeText(context, "helloddsddj"+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "helloddsddj" + position, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -78,6 +78,6 @@ public class ViewPagerImageAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((LinearLayout)object);
+        container.removeView((LinearLayout) object);
     }
 }

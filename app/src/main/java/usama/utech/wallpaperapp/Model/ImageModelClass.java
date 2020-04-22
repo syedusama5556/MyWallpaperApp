@@ -2,7 +2,7 @@ package usama.utech.wallpaperapp.Model;
 
 public class ImageModelClass {
 
-    String image_id,image_url,verified,category;
+    String image_id, image_url, verified, category;
 
     public ImageModelClass() {
     }

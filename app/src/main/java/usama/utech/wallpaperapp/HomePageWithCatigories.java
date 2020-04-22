@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,21 +34,15 @@ import usama.utech.wallpaperapp.Model.ImageModelClass;
 
 public class HomePageWithCatigories extends AppCompatActivity {
 
+    RecyclerView recyclerViewNight, recyclerViewAbstract, recyclerViewNature, recyclerViewTravel;
+    Handler handler;
     private ArrayList<ImageModelClass> imageModelClassArrayListNight = new ArrayList<>();
-
     private ArrayList<ImageModelClass> imageModelClassArrayListNature = new ArrayList<>();
     private ArrayList<ImageModelClass> imageModelClassArrayListAbstract = new ArrayList<>();
     private ArrayList<ImageModelClass> imageModelClassArrayListTravel = new ArrayList<>();
-
-
-
-    RecyclerView recyclerViewNight, recyclerViewAbstract, recyclerViewNature, recyclerViewTravel;
-    private HomeImageAdapter imageLoadAdapterNight,imageLoadAdapterNature,imageLoadAdapterAbstract,imageLoadAdapterTravel;
+    private HomeImageAdapter imageLoadAdapterNight, imageLoadAdapterNature, imageLoadAdapterAbstract, imageLoadAdapterTravel;
     private DatabaseReference databaseReference;
     private AdView mAdView;
-
-    Handler handler;
-
     //InterstitialAd ads
     private InterstitialAd mInterstitialAd;
 
@@ -60,11 +53,11 @@ public class HomePageWithCatigories extends AppCompatActivity {
         setContentView(R.layout.activity_home_page_with_catigories);
 
 
-        recyclerViewNight = (RecyclerView) findViewById(R.id.recy_home_page);
+        recyclerViewNight = findViewById(R.id.recy_home_page);
 
-        recyclerViewAbstract = (RecyclerView) findViewById(R.id.rec_home_abstract);
-        recyclerViewNature = (RecyclerView) findViewById(R.id.rec_home_nature);
-        recyclerViewTravel = (RecyclerView) findViewById(R.id.rec_home_travel);
+        recyclerViewAbstract = findViewById(R.id.rec_home_abstract);
+        recyclerViewNature = findViewById(R.id.rec_home_nature);
+        recyclerViewTravel = findViewById(R.id.rec_home_travel);
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -83,7 +76,7 @@ public class HomePageWithCatigories extends AppCompatActivity {
         AdRequest adRequest1 = new AdRequest.Builder().build();
         mInterstitialAd.loadAd(adRequest1);
 
-        mInterstitialAd.setAdListener(new AdListener(){
+        mInterstitialAd.setAdListener(new AdListener() {
 
             @Override
             public void onAdClosed() {
@@ -226,7 +219,6 @@ public class HomePageWithCatigories extends AppCompatActivity {
                     ImageModelClass imageModelClass = dataSnap.getValue(ImageModelClass.class);
 
 
-
                     if (imageModelClass.getCategory().equals("Travel")) {
 
                         imageModelClassArrayListTravel.add(imageModelClass);
@@ -255,7 +247,6 @@ public class HomePageWithCatigories extends AppCompatActivity {
                 }
 
 
-
             }
 
             @Override
@@ -270,16 +261,14 @@ public class HomePageWithCatigories extends AppCompatActivity {
     public void allNatureWallpaper(View view) {
 
 
-
-
-        mInterstitialAd.setAdListener(new AdListener(){
+        mInterstitialAd.setAdListener(new AdListener() {
 
             @Override
             public void onAdClosed() {
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+                Intent intent = new Intent(HomePageWithCatigories.this, ShowAllWallpapers.class);
 
-                intent.putExtra("dataitem","Nature");
+                intent.putExtra("dataitem", "Nature");
 
                 startActivity(intent);
             }
@@ -297,24 +286,25 @@ public class HomePageWithCatigories extends AppCompatActivity {
 
     public void allTravelWallpaper(View view) {
 
-        mInterstitialAd.setAdListener(new AdListener(){
+        mInterstitialAd.setAdListener(new AdListener() {
 
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
 
-                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+                Intent intent = new Intent(HomePageWithCatigories.this, ShowAllWallpapers.class);
 
-                intent.putExtra("dataitem","Travel");
+                intent.putExtra("dataitem", "Travel");
 
 
                 startActivity(intent);
             }
+
             @Override
             public void onAdFailedToLoad(int errorCode) {
-                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+                Intent intent = new Intent(HomePageWithCatigories.this, ShowAllWallpapers.class);
 
-                intent.putExtra("dataitem","Travel");
+                intent.putExtra("dataitem", "Travel");
 
 
                 startActivity(intent);
@@ -322,9 +312,9 @@ public class HomePageWithCatigories extends AppCompatActivity {
 
             @Override
             public void onAdLoaded() {
-                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+                Intent intent = new Intent(HomePageWithCatigories.this, ShowAllWallpapers.class);
 
-                intent.putExtra("dataitem","Travel");
+                intent.putExtra("dataitem", "Travel");
 
 
                 startActivity(intent);
@@ -332,9 +322,9 @@ public class HomePageWithCatigories extends AppCompatActivity {
 
             @Override
             public void onAdOpened() {
-                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+                Intent intent = new Intent(HomePageWithCatigories.this, ShowAllWallpapers.class);
 
-                intent.putExtra("dataitem","Travel");
+                intent.putExtra("dataitem", "Travel");
 
 
                 startActivity(intent);
@@ -352,23 +342,24 @@ public class HomePageWithCatigories extends AppCompatActivity {
 
     public void allAbstractWallpaper(View view) {
 
-        mInterstitialAd.setAdListener(new AdListener(){
+        mInterstitialAd.setAdListener(new AdListener() {
 
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
-                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+                Intent intent = new Intent(HomePageWithCatigories.this, ShowAllWallpapers.class);
 
-                intent.putExtra("dataitem","Abstract");
+                intent.putExtra("dataitem", "Abstract");
 
 
                 startActivity(intent);
             }
+
             @Override
             public void onAdFailedToLoad(int errorCode) {
-                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+                Intent intent = new Intent(HomePageWithCatigories.this, ShowAllWallpapers.class);
 
-                intent.putExtra("dataitem","Abstract");
+                intent.putExtra("dataitem", "Abstract");
 
 
                 startActivity(intent);
@@ -385,14 +376,14 @@ public class HomePageWithCatigories extends AppCompatActivity {
 
     public void allNightWallpaper(View view) {
 
-        mInterstitialAd.setAdListener(new AdListener(){
+        mInterstitialAd.setAdListener(new AdListener() {
 
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
-                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllWallpapers.class);
+                Intent intent = new Intent(HomePageWithCatigories.this, ShowAllWallpapers.class);
 
-                intent.putExtra("dataitem","Night");
+                intent.putExtra("dataitem", "Night");
                 startActivity(intent);
             }
         });
@@ -405,24 +396,24 @@ public class HomePageWithCatigories extends AppCompatActivity {
         }
 
 
-
     }
 
     public void showAllWallpaperPage(View view) {
 
-        mInterstitialAd.setAdListener(new AdListener(){
+        mInterstitialAd.setAdListener(new AdListener() {
 
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
-                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllCategoriList.class);
+                Intent intent = new Intent(HomePageWithCatigories.this, ShowAllCategoriList.class);
 
 
                 startActivity(intent);
             }
+
             @Override
             public void onAdFailedToLoad(int errorCode) {
-                Intent intent = new Intent(HomePageWithCatigories.this,ShowAllCategoriList.class);
+                Intent intent = new Intent(HomePageWithCatigories.this, ShowAllCategoriList.class);
 
 
                 startActivity(intent);

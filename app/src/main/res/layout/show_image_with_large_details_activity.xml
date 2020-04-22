@@ -19,27 +19,26 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        >
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/backFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabSize="mini"
             android:layout_margin="15dp"
             android:onClick="back"
+            app:fabSize="mini"
             app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/setAsWallpaper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabSize="mini"
             android:layout_margin="15dp"
             android:onClick="setWallPaper"
+            app:fabSize="mini"
             app:srcCompat="@drawable/ic_wallpaper_black_24dp" />
 
 
@@ -47,9 +46,9 @@
             android:id="@+id/nextFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabSize="mini"
             android:layout_margin="15dp"
             android:onClick="next"
+            app:fabSize="mini"
             app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
 
 
